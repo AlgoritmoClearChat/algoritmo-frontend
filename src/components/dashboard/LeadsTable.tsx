@@ -55,8 +55,26 @@ export default function LeadsTable({ leads, loading, onChangeStatus }: Props) {
               <td className="p-2">{l.nome_empresa}</td>
               <td className="p-2">
                 <div className="flex items-center gap-2">
-                  <span>{l.cnpj_completo}</span>
-                  <button onClick={() => navigator.clipboard.writeText(l.cnpj_completo)} className="text-xs text-slate-500 hover:text-slate-800">Copiar</button>
+                  {(() => {
+                    const cnpj = (l as any).cnpj_completo || (l as any).cnpj || "";
+                    const show = cnpj ? cnpj : "—";
+                    return (
+                      <>
+                        <span>{show}</span>
+                        {cnpj ? (
+                          <button
+                            onClick={() => {
+                              try { navigator.clipboard.writeText(cnpj); }
+                              catch { /* fallback */ }
+                            }}
+                            className="text-xs text-slate-500 hover:text-slate-800"
+                          >
+                            Copiar
+                          </button>
+                        ) : null}
+                      </>
+                    );
+                  })()}
                 </div>
               </td>
               <td className="p-2">{l.cnae}</td>
