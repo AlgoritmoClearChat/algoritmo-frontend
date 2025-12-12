@@ -7,11 +7,13 @@ export function scoreColor(score: number) {
   return "bg-red-500 text-white";
 }
 
-export default function ScoreBadge({ score }: { score: number }) {
-  const cls = scoreColor(score);
+export default function ScoreBadge({ score }: { score?: number | null }) {
+  const realScore = typeof score === "number" ? score : 0;
+  const cls = scoreColor(realScore);
+
   return (
     <span className={`px-2 py-1 rounded-md text-sm font-medium ${cls}`}>
-      {score}
+      {realScore}
     </span>
   );
 }

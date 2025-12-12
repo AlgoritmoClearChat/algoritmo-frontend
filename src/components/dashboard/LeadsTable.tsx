@@ -82,7 +82,7 @@ export default function LeadsTable({ leads, loading, onChangeStatus }: Props) {
               <td className="p-2">{l.nome_decisor}</td>
               <td className="p-2"><ScoreBadge score={l.score} /></td>
               <td className="p-2">
-                <select value={l.status_lead} onChange={(e) => onChangeStatus(l.id, e.target.value)} className="border rounded p-1 text-sm">
+                <select value={l.status} onChange={(e) => onChangeStatus(l.id, e.target.value)} className="border rounded p-1 text-sm">
                   <option value="aberto">aberto</option>
                   <option value="em contato">em contato</option>
                   <option value="qualificado">qualificado</option>

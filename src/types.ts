@@ -6,6 +6,6 @@ export type Lead = {
   uf: string;
   nome_decisor: string;
   score: number; // numérico
-  status_lead: string;
+  status: string;
   link_linkedin?: string | null;
 };

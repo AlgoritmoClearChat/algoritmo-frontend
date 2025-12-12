@@ -22,8 +22,8 @@ export async function fetchLeads() {
 }
 
 // PATCH /leads/:id/status
-export async function patchLeadStatus(id: string | number, status_lead: string) {
-  const res = await api.patch(`/leads/${id}/status`, { status_lead });
+export async function patchLeadStatus(id: string | number, status: string) {
+  const res = await api.patch(`/leads/${id}/status`, { status });
   return res.data;
 }
 

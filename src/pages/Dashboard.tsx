@@ -29,7 +29,7 @@ export default function Dashboard() {
             ...l,
             uf: l.uf ?? "",
             cnae: l.cnae ?? "",
-            status_lead: l.status_lead ?? "",
+            status: l.status ?? "",
             nome_decisor: l.nome_decisor ?? "",
             nome_empresa: l.nome_empresa ?? "",
             cnpj_completo: l.cnpj_completo ?? "",
@@ -48,7 +48,7 @@ export default function Dashboard() {
     try {
       await patchLeadStatus(String(id), status);
       setLeads((prev) =>
-        prev.map((l) => (l.id === id ? { ...l, status_lead: status } : l))
+        prev.map((l) => (l.id === id ? { ...l, status: status } : l))
       );
     } catch (e) {
       console.error(e);
@@ -68,14 +68,14 @@ export default function Dashboard() {
   );
 
   const statuses = useMemo(
-    () => [...new Set(leads.map((l) => l.status_lead).filter(Boolean))],
+    () => [...new Set(leads.map((l) => l.status).filter(Boolean))],
     [leads]
   );
 
   // ---- Filter logic ----
   const filtered = useMemo(() => {
     return leads.filter((l) => {
-      const status = l.status_lead ?? "";
+      const status = l.status ?? "";
       const uf = l.uf ?? "";
       const cnae = l.cnae ?? "";
       const decisor = l.nome_decisor?.toLowerCase() ?? "";
